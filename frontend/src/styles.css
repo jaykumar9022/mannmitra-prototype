@@ -1,0 +1,222 @@
+/* ================= CSS Variables ================= */
+:root {
+  --primary-color: #A7C7E7;
+  --secondary-color: #77DD77;
+  --accent-color: #E0E7FF;
+  --bg-color: #F8F9FA;
+  --card-bg-color: #FFFFFF;
+  --text-color-dark: #1a1a1a;
+  --text-color-light: #333;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+  --border-radius-sm: 12px;
+  --border-radius-md: 18px;
+  --border-radius-lg: 20px;
+  --transition-fast: 0.25s ease;
+}
+
+/* ================= Base & Typography ================= */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  color: var(--text-color-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h3 {
+  margin: 0 0 0.75rem; /* Using rem for consistent spacing */
+  font-size: clamp(1.125rem, 4vw, 1.5rem); /* Responsive font size */
+  font-weight: 600;
+  color: var(--text-color-dark);
+}
+
+/* ================= Layout & Containers ================= */
+.header {
+  background: linear-gradient(90deg, var(--primary-color), #E6E6FA);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-color-dark);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  box-shadow: var(--shadow-sm);
+  border-bottom-left-radius: var(--border-radius-md);
+  border-bottom-right-radius: var(--border-radius-md);
+}
+
+.main {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ================= Card Components ================= */
+.card {
+  background: var(--card-bg-color);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(145deg, var(--card-bg-color), #f3f4f6);
+}
+
+/* ================= Chat Interface ================= */
+.chatBox {
+  max-height: 400px; /* Slightly increased height */
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 0.25rem;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+.chatBox::-webkit-scrollbar {
+  width: 8px;
+}
+.chatBox::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--primary-color), var(--secondary-color));
+  border-radius: 4px;
+}
+
+.botBubble,
+.userBubble {
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-lg);
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.botBubble {
+  background: var(--primary-color);
+  align-self: flex-start;
+}
+
+.userBubble {
+  background: var(--secondary-color);
+  align-self: flex-end;
+  text-align: right;
+  color: var(--text-color-dark);
+}
+
+.botBubble.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* ================= Forms & Inputs ================= */
+.chatInput {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.chatInput input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border var(--transition-fast);
+  background-color: #f9f9f9;
+}
+
+.chatInput input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(167, 199, 231, 0.5); /* Subtle focus ring */
+}
+
+.moodRow {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.moodBtn {
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  background: #F3F4F6;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.moodBtn:hover {
+  transform: scale(1.15); /* Adjusted scale for a smoother effect */
+  background: var(--accent-color);
+}
+
+.moodBtn:active {
+  transform: scale(0.95);
+}
+
+/* ================= Grid & Tooling ================= */
+.toolGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.toolCard {
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  background: var(--card-bg-color);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.toolCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= Animations & Utility ================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.statusMessage {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #555;
+  text-align: center;
+}
+
+/* ================= Responsive Design ================= */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+  .card {
+    width: 100%;
+    max-width: 95%;
+  }
+}
