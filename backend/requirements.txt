@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+pydantic
+python-dotenv
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-cloud-aiplatform  # optional if you use the client lib
